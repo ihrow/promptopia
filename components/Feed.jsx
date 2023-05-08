@@ -27,11 +27,7 @@ export default function Feed() {
 
   useEffect(() => {
     const fetchPrompts = async () => {
-      let url = "/api/prompt";
-      if (searchText) {
-        url = `/api/prompt/search/${searchText}`;
-      }
-      const response = await fetch(url);
+      const response = await fetch(`/api/prompt/search/${searchText}`);
       const data = await response.json();
       setPosts(data);
     };
