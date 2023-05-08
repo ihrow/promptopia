@@ -16,12 +16,15 @@ export default function MyProfile() {
 
   useEffect(() => {
     const fetchPrompts = async () => {
+      if (!userId) userId = session?.user.id;
       const response = await fetch(
-        `/api/users/${userId || session?.user.id}/posts`
+        `/api/users/${
+          userId !== session?.user.id ? userId : session?.user.id
+        }/posts`
       );
-      const user = await fetch(`/api/users/${userId || session?.user.id}`);
-      const data = await response.json();
-      const userData = await user.json();
+      const user = await fetch(
+        `/api/users/${userId !== session?.user.id ? userId : session?.user.id}`
+      );
       setPosts(data);
       setUsername(userData.username);
     };
@@ -54,7 +57,7 @@ export default function MyProfile() {
   return (
     username && (
       <Profile
-        name={`${username}'s`}
+        name={userId === session?.user.id ? "My Profile" : username}
         desc={`Welcome to ${username}'s profile!`}
         data={posts}
         handleEdit={handleEdit}
