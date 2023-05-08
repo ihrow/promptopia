@@ -8,7 +8,7 @@ import Profile from "@components/Profile";
 export default function MyProfile() {
   const { data: session } = useSession();
   const searchParams = useSearchParams();
-  const userId = searchParams.get("id");
+  let userId = searchParams.get("id");
   const router = useRouter();
   const [username, setUsername] = useState("");
 
@@ -25,10 +25,12 @@ export default function MyProfile() {
       const user = await fetch(
         `/api/users/${userId !== session?.user.id ? userId : session?.user.id}`
       );
+      const data = await response.json();
+      const userData = await user.json();
       setPosts(data);
       setUsername(userData.username);
     };
-    fetchPrompts();
+    fetchPrompts(); 
   }, []);
 
   const handleEdit = (post) => {
