@@ -41,14 +41,7 @@ export default function Nav() {
               Create Post
             </Link>
 
-            <button
-              type="button"
-              onClick={() => {
-                signOut();
-                router.push("/");
-              }}
-              className="outline_btn"
-            >
+            <button type="button" onClick={signOut} className="outline_btn">
               Sign Out
             </button>
 
@@ -130,7 +123,9 @@ export default function Nav() {
                   key={provider.name}
                   onClick={() => signIn(provider.id)}
                   className="black_btn"
-                >Sign In</button>
+                >
+                  Sign In
+                </button>
               ))}
           </>
         )}
