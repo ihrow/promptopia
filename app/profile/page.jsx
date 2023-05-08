@@ -28,7 +28,6 @@ export default function MyProfile() {
       const data = await response.json();
       const userData = await user.json();
       setPosts(data);
-      console.log(userData);
       setUsername(userData.username);
     };
     fetchPrompts();
