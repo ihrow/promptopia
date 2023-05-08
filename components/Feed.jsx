@@ -28,8 +28,7 @@ export default function Feed() {
   useEffect(() => {
     const fetchPrompts = async () => {
       let url = "/api/prompt";
-      searchText = searchText.trim();
-      if (searchText) {
+      if (searchText.trim().length > 0) {
         url = `/api/prompt/search/${searchText}`;
       }
       const response = await fetch(url);
