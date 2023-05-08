@@ -16,15 +16,10 @@ export default function MyProfile() {
 
   useEffect(() => {
     const fetchPrompts = async () => {
-      let response;
-      let user;
-      if (userId) {
-        response = await fetch(`/api/users/${userId}/posts`);
-        user = await fetch(`/api/users/${userId}`);
-      } else {
-        response = await fetch(`/api/users/${session?.user.id}/posts`);
-        user = await fetch(`/api/users/${session?.user.id}`);
-      }
+      const response = await fetch(
+        `/api/users/${userId || session?.user.id}/posts`
+      );
+      const user = await fetch(`/api/users/${userId || session?.user.id}`);
       const data = await response.json();
       const userData = await user.json();
       setPosts(data);
