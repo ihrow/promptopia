@@ -12,3 +12,6 @@
 - NextJS 
 - React JS
 - Tailwind CSS
+
+## Vercel Deploy Issue:
+- Posts aren't updated after publishing (only redeploy helps), but they still appear in a search.
